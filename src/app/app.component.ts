@@ -10,10 +10,12 @@ export class AppComponent {
   title = 'angularCrashy'; // only var
   todoValue: string;
   list: Todo[];
+  totalItems: number;
 
   ngOnInit() {
     this.list = [];
     this.todoValue = '';
+    this.totalItems = 0;
   }
 
   addItem() {
@@ -26,9 +28,11 @@ export class AppComponent {
       this.list.push(newItem); // add todo to list
     }
     this.todoValue = ''; // reset input to empty
+    this.totalItems++;
   }
 
   deleteItem(id: number) {
     this.list = this.list.filter((item) => item.id !== id);
+    this.totalItems--;
   }
 }

@@ -6,18 +6,32 @@
     height="100"
     class="logo"
   />
-  <h1 class="app-title">Get Stuff Done!</h1>
+  <h1 class="app-title">Get Shiz Done!</h1>
 </div>
 <div class="container">
-  Add a todo!
+  What's on the chopping block today?
   <br />
-  <input type="text" class="input-text" placeholder="Type a todo" />
-  <button class="add-btn">Add Todo</button>
+  <p>Stuff to do: {{ totalItems }}</p>
+
+  <br />
+  <input
+    type="text"
+    class="input-text"
+    placeholder="Type a todo"
+    [(ngModel)]="todoValue"
+    (keyup.enter)="addItem()"
+  />
+  <button class="add-btn" (click)="addItem()">Add Todo</button>
   <div class="list">
     <ul>
-      <li>
-        <input type="checkbox" name="isDone" />Task 1
-        <button class="btn">Delete</button>
+      <li *ngFor="let item of list">
+        <input
+          type="checkbox"
+          class="hidden"
+          name="isDone"
+          [(ngModel)]="item.isDone"
+        />{{ item.value }}
+        <button class="btn" (click)="deleteItem(item.id)">Done</button>
       </li>
     </ul>
   </div>
